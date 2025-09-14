@@ -1,0 +1,6 @@
+LoadModule status_module modules/mod_status.so
+
+<Location "/server-status">
+    SetHandler server-status
+    Require ip 127.0.0.1
+</Location>

@@ -1,0 +1,23 @@
+Listen ${APACHE_SSL_LISTEN_SSL_PORT}
+
+SSLHonorCipherOrder ${APACHE_SSL_HONOR_CIPHER_ORDER}
+SSLCipherSuite ${APACHE_SSL_CIPHER_SUITE}
+SSLProxyCipherSuite ${APACHE_SSL_PROXY_CIPHER_SUITE}
+SSLProtocol ${APACHE_SSL_PROTOCOL}
+SSLProxyProtocol ${APACHE_SSL_PROXY_PROTOCOL}
+
+SSLPassPhraseDialog  builtin
+SSLSessionCache        "shmcb:/run/apache2/scache(512000)"
+SSLSessionCacheTimeout  ${APACHE_SSL_SESSION_CACHE_TIMEOUT}
+
+SSLUseStapling ${APACHE_SSL_USE_STAPLING}
+SSLStaplingCache "shmcb:/run/apache2/ssl_stapling(32768)"
+SSLStaplingStandardCacheTimeout ${APACHE_SSL_STAPLING_STANDARD_CACHE_TIMEOUT}
+SSLStaplingErrorCacheTimeout ${APACHE_SSL_STAPLING_ERROR_CACHE_TIMEOUT}
+
+${APACHE_SSL_HSTS_HEADER}
+
+SSLEngine on
+
+SSLCertificateFile ${APACHE_SSL_CERTIFICATE_FILE}
+SSLCertificateKeyFile ${APACHE_SSL_CERTIFICATE_KEY_FILE}
