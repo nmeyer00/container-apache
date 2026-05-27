@@ -21,7 +21,8 @@ RUN set -eux; \
     if [ "$APK_UPGRADE" = "true" ]; then \
         apk update && apk --no-cache upgrade; \
     fi; \
-    apk add --no-cache apache2 envsubst bash findutils apache2-webdav apache2-proxy apache2-ssl
+    apk add --no-cache apache2 envsubst bash findutils apache2-webdav apache2-proxy apache2-ssl; \
+    rm -f /etc/ssl/apache2/server.key
 
 COPY rootfs/ /
 
@@ -31,7 +32,6 @@ RUN printf "%s\n" "$IMAGE_VERSION" > /etc/image-version
 RUN mkdir -p /opt/httpd/etc/conf.d /run/apache2 /var/lock/apache2 /var/www /app && \
     chown -R apache:apache /opt/httpd /run/apache2 /var/lock/apache2 /var/www /app && \
     chmod +x /entrypoint.sh /opt/httpd/bin/*.sh
-
 
 USER apache
 
